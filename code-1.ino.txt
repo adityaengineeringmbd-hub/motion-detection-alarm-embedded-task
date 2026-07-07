@@ -1,0 +1,23 @@
+int pirPin = 2;      // PIR sensor output pin
+int ledPin = 13;     // LED indicator pin
+int buzzerPin = 8;   // Buzzer pin
+
+void setup() {
+  pinMode(pirPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  pinMode(buzzerPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int motion = digitalRead(pirPin);   // Read sensor state
+  if (motion == HIGH) {
+    digitalWrite(ledPin, HIGH);        // Turn on LED
+    digitalWrite(buzzerPin, HIGH);     // Sound buzzer
+    Serial.println("Motion Detected! Alarm ON");
+  } else {
+    digitalWrite(ledPin, LOW);
+    digitalWrite(buzzerPin, LOW);
+  }
+  delay(200);   // Small debounce delay
+}
